@@ -1,5 +1,5 @@
 # Statify
-## A Spotify Data Aggretator Webapp
+<h3>A Spotify Data Aggretator Webapp</h3>
 
 <br>
 Statify is a Python Webapp that utilizes the Spotify API to present you with analytics about your listening! 
