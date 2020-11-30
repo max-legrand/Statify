@@ -5,7 +5,7 @@
 
     {% if res is not none %}
         <script>
-            document.getElementById("swap").innerHTML = "<button class='btn btn-dark'><a style='color: white; text-decoration: none;' href='/logout'>Logout</a></button>"
+            document.getElementById("swap").innerHTML = "<a style='color: white; text-decoration: none !important;' href='/logout'><button class='btn btn-dark'>Logout</button></a>"
         </script>
 
         <style>
@@ -20,7 +20,7 @@
 
     {% else %}
     <script>
-        document.getElementById("swap").innerHTML = "<button class='btn btn-dark'><a style='color: white' href='/login'>Login</a></button>"
+        document.getElementById("swap").innerHTML = "<a style='color: white; text-decoration: none !important' href='/login'><button class='btn btn-dark' style='text-decoration: none !important'>Login</button></a>"
     </script>
 
     {% endif %}

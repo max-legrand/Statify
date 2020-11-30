@@ -3,7 +3,7 @@
 
 {% block content %}
 <script>
-    document.getElementById("swap").innerHTML = "<button class='btn btn-dark'><a style='color: white; text-decoration: none;' href='/logout'>Logout</a></button>"
+    document.getElementById("swap").innerHTML = "<a style='color: white; text-decoration: none;' href='/logout'><button class='btn btn-dark'>Logout</button></a>"
 </script>
 <style>
     .linkbtn{
@@ -61,10 +61,10 @@
                 <button  style="width: 15em" class="btn btn-light">Short Term</button>
             </div>
             <div class="col-sm-4" style="text-align: center;">
-                <button  style="width: 15em" class="btn btn-dark"><a href="/top_tracks_med" class="linkbtn">Medium Term</a></button>
+                <a href="/top_tracks_med" class="linkbtn"><button  style="width: 15em" class="btn btn-dark">Medium Term</button></a>
             </div>
             <div class="col-sm-4" style="text-align: center;">
-                <button  style="width: 15em" class="btn btn-dark"><a href="/top_tracks_long" class="linkbtn">Long Term</a></button>
+                <a href="/top_tracks_long" class="linkbtn"><button  style="width: 15em" class="btn btn-dark">Long Term</button></a>
             </div>
         </div>
     </div>
@@ -79,13 +79,13 @@
     <br>
     <div class="row">
         <div class="col-sm-12" style="text-align: center;">
-            <button  style="width: 15em" class="btn btn-dark"><a href="/top_tracks_med" class="linkbtn">Medium Term</a></button>
+            <a href="/top_tracks_med" class="linkbtn"><button  style="width: 15em" class="btn btn-dark">Medium Term</button></a>
         </div>
     </div>
     <br>
     <div class="row">
         <div class="col-sm-12" style="text-align: center;">
-            <button  style="width: 15em" class="btn btn-dark"><a href="/top_tracks_long" class="linkbtn">Long Term</a></button>
+            <a href="/top_tracks_long" class="linkbtn"><button  style="width: 15em" class="btn btn-dark">Long Term</button></a>
         </div>
     </div>
 </div>
