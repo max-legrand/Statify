@@ -16,3 +16,5 @@ Statify presents the following data points for viewing:
 
 <br>
 Statify is built with Python3 (spotipy), Django, PSQL, JavaScript (chartjs), and hosted with Heroku
+<br>
+<a href="https://statify-web.herokuapp.com/">Try it out here!</a>
