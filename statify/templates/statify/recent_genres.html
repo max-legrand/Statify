@@ -1,0 +1,126 @@
+{% extends 'base_layout.html' %}
+{% load static %}
+
+{% block content %}
+<script>
+    document.getElementById("swap").innerHTML = "<button class='btn btn-dark'><a style='color: white; text-decoration: none;' href='/logout'>Logout</a></button>"
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+<br>
+
+<div class="container-fluid" style="padding-left: 2%">
+    <div class="row">
+        <div class="col-6">
+            <h1>Recent Genres:</h1>
+        </div>
+        <div class="col-6" style=" padding-right: 3em">
+            <button type="button" style="float: right; border-radius: 50%; height: 38px; width: 38px;" class="btn btn-light" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-info"></i>
+            </button>
+        </div>
+    </div>
+    <!-- Button trigger modal -->
+
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" style="color: black" id="exampleModalLabel">Recent Genres Info</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="color: black">
+                The recent genres page displays the top 10 genres from your recent listening history. 
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-primary"  data-dismiss="modal" style="width:25%;">Ok</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% if ismobile %}
+    <div class="chart-container" style="position: relative;">
+        <canvas id="myChart" height="350%"></canvas>
+    </div> 
+{% else %}
+    <div class="container-fluid" style="justify-content: center;">
+        <div class="row">
+            <div class="col-sm-12">
+                    <div class="chart-container" style="position: relative;">
+                        <canvas id="myChart" height="125%"></canvas>
+                    </div> 
+                </div>
+        </div>
+        <br>
+    </div>
+{% endif %}
+
+
+
+<script>
+let dataval = {{datas|safe}}
+let length = dataval.length
+let colorslist = [
+    "rgba(239, 162, 255, 1)",
+    "rgba(69, 6, 46, 1)",
+    "rgba(127, 5, 95, 1)",
+    "rgba(244, 184, 96, 1)",
+    "rgba(183, 109, 104, 1)",
+    "rgba(0, 100, 148, 1)",
+    "rgba(69, 203, 133, 1)",
+    "rgba(222, 124, 90, 1)",
+    "rgba(79, 93, 117, 1)",
+    "rgba(137, 4, 61, 1)",
+]
+
+let labels = {{labels|safe}}
+let newlabels = []
+for (var i = 0; i < length; i++){
+    let newstring = labels[i]+" – "+dataval[i].toString()
+    newlabels.push(newstring)
+}
+
+
+var ctx = document.getElementById('myChart').getContext('2d');
+var myDoughnutChart = new Chart(ctx, {
+    plugins: 
+                {
+        beforeInit: function(chart, options) {
+            chart.legend.afterFit = function() {
+            this.height += 25; // must use `function` and not => because of `this`
+            };
+        }
+    },
+    type: 'doughnut',
+    data: {
+        datasets: [{
+           data: {{datas|safe}}, 
+           backgroundColor: colorslist
+        }],
+        
+        labels: newlabels
+    },
+    options:{
+        legend: {
+            labels: {
+                // This more specific font property overrides the global property
+                fontColor: 'white',
+                boxWidth: 25,
+            },
+            
+        },
+        responsive: true,
+        maintainAspectRatio: true
+    }
+});
+</script>
+{% endblock %}

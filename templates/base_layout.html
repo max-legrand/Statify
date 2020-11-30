@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Statify</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body style="background-color:#252525; color: white">
+
+    <div class="container-fluid">
+        <div class="row" style="background-color: #efa2ff;">
+            <div class="col-md-12">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/"><h1 style="color:#252525; font-family: 'Dosis', sans-serif;">Statify</h1></a>
+                    </li>
+
+                    {% if is_mobile %}
+                        <li class="nav-item ml-auto" style="padding-top: 1em;">
+                            <button class='btn btn-dark'><a style='color: white; text-decoration: none;' href='/about'>About</a></button>
+                        </li>
+                    {% else %}
+                        <li class="nav-item" style="padding-top: 1em; margin-left: 75%">
+                            <button class='btn btn-dark'><a style='color: white; text-decoration: none;' href='/about'>About</a></button>
+                        </li>
+                    {% endif %}
+                    <li class="nav-item ml-auto" style="padding-top: 1em" id="swap">
+                        
+                 
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    {%block content%}
+    {%endblock%}
+</body>
+</html>

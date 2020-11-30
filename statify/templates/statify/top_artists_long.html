@@ -1,0 +1,273 @@
+{% extends 'base_layout.html' %}
+{% load static %}
+
+{% block content %}
+<script>
+    document.getElementById("swap").innerHTML = "<button class='btn btn-dark'><a style='color: white; text-decoration: none;' href='/logout'>Logout</a></button>"
+</script>
+
+<style>
+    .artist_image{
+        border-radius: 50%;
+        width: 15em
+    }
+
+</style>
+
+<br>
+<script>
+    document.getElementById("swap").innerHTML = "<button class='btn btn-dark'><a style='color: white; text-decoration: none;' href='/logout'>Logout</a></button>"
+</script>
+<style>
+    .linkbtn{
+        color: white !important
+    }
+    .linkbtn:hover{
+        color: white;
+        text-decoration: none;
+    }
+</style>
+
+<br>
+
+
+<div class="container-fluid" style="padding-left: 2%">
+    <div class="row">
+        <div class="col-6">
+            <h1>Top Artists:</h1>
+        </div>
+        <div class="col-6" style=" padding-right: 3em">
+            <button type="button" style="float: right; border-radius: 50%; height: 38px; width: 38px;" class="btn btn-light" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-info"></i>
+            </button>
+        </div>
+    </div>
+    <!-- Button trigger modal -->
+    <br>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" style="color: black" id="exampleModalLabel">Top Artists Info</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="color: black">
+                The top artists page displays the top artists for you over 3 different time periods. The top genres page displays the top 10 genres from your listening history over 3 time periods. Short -> approx. last 4 weeks of listening, Medium -> approx. last 6 months of listening, Long -> over several years of listening. Click the artist image to open in your Spotify app, or click the name to open on the web. 
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-primary"  data-dismiss="modal" style="width:25%;">Ok</button>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+
+{% if not mobile %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-4" style="text-align: center;">
+                <button  style="width: 15em" class="btn btn-dark"><a href="/top_artists" class="linkbtn">Short Term</a></button>
+            </div>
+            <div class="col-sm-4" style="text-align: center;">
+                <button  style="width: 15em" class="btn btn-dark"><a href="/top_artists_med" class="linkbtn">Medium Term</a></button>
+            </div>
+            <div class="col-sm-4" style="text-align: center;">
+                <button  style="width: 15em" class="btn btn-light">Long Term</button>
+            </div>
+        </div>
+    </div>
+
+{% else %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12" style="text-align: center;">
+            <button  style="width: 15em" class="btn btn-dark"><a href="/top_artists" class="linkbtn">Short Term</a></button>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-sm-12" style="text-align: center;">
+            <button  style="width: 15em" class="btn btn-dark"><a href="/top_artists_med" class="linkbtn">Medium Term</a></button>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-sm-12" style="text-align: center;">
+            <button  style="width: 15em" class="btn btn-light">Long Term</button>
+        </div>
+    </div>
+</div>
+
+{% endif %}
+
+
+<br>
+<br>
+{% if not mobile %}
+    {% for names1, images1, weblinks1, applinks1, popularity1, names2, images2, weblinks2, applinks2, popularity2, names3, images3, weblinks3, applinks3, popularity3 in infos %}    
+        <div class="container-fluid" style="padding-left: 2%">
+            <div class="row">
+                {% if names1 is not none %}
+                    {% if names2 is none and names3 is none %}
+                        <div class="col-sm-4" style="text-align: center"></div>
+                        <div class="col-sm-4" style="text-align: center">
+                            <a href="{{applinks1}}">
+                                {% if images1 is not none %}
+                                    <img class="artist_image" src="{{images1}}" alt="" height=250em>
+                                {% else %}
+                                    <img class="artist_image" src="{% static 'img/default_artist.jpg' %}" alt="" height=250em>
+                                {% endif %}
+                            </a>
+                        </div>
+                    {% elif names2 is not none and names3 is none%}
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-4" style="text-align: center">
+                            <a href="{{applinks1}}">
+                                {% if images1 is not none %}
+                                    <img class="artist_image" src="{{images1}}" alt="" height=250em>
+                                {% else %}
+                                    <img class="artist_image" src="{% static 'img/default_artist.jpg' %}" alt="" height=250em>
+                                {% endif %}
+                            </a>
+                        </div>
+                    {% else %} 
+                        <div class="col-sm-4" style="text-align: center">
+                            <a href="{{applinks1}}">
+                                {% if images1 is not none %}
+                                    <img class="artist_image" src="{{images1}}" alt="" height=250em>
+                                {% else %}
+                                    <img class="artist_image" src="{% static 'img/default_artist.jpg' %}" alt="" height=250em>
+                                {% endif %}
+                            </a>
+                        </div>
+                    {% endif %}
+                   
+                {% endif %}
+                {% if names2 is not none %}
+                    {%if names3 is not none %}
+                        <div class="col-sm-4" style="text-align: center">
+                            <a href="{{applinks2}}">
+                                {% if images2 is not none %}
+                                    <img class="artist_image" src="{{images2}}" alt="" height=250em>
+                                {% else %}
+                                    <img class="artist_image" src="{% static 'img/default_artist.jpg' %}" alt="" height=250em>
+                                {% endif %}
+                            </a>
+                        </div>
+                    {% else %}
+                        <div class="col-sm-4" style="text-align: center">
+                            <a href="{{applinks2}}">
+                                {% if images2 is not none %}
+                                    <img class="artist_image" src="{{images2}}" alt="" height=250em>
+                                {% else %}
+                                    <img class="artist_image" src="{% static 'img/default_artist.jpg' %}" alt="" height=250em>
+                                {% endif %}
+                            </a>
+                        </div>
+                        <div class="col-sm-2"></div>
+                    {% endif %}
+                {% endif %}
+                {% if names3 is not none %}
+                    <div class="col-sm-4" style="text-align: center">
+                        <a href="{{applinks3}}">
+                            {% if images3 is not none %}
+                                <img class="artist_image" src="{{images3}}" alt="" height=250em>
+                            {% else %}
+                                <img class="artist_image" src="{% static 'img/default_artist.jpg' %}" alt="" height=250em>
+                            {% endif %}
+                        </a>
+                    </div>
+                {% endif %}
+
+            </div>
+            <br> 
+            <div class="row">
+                {% if names1 is not none %}
+                    {% if names2 is none and names3 is none %}
+                        <div class="col-sm-4" style="text-align: center"></div>
+                        <div class="col-sm-4" style="text-align: center">
+                            <a target="_blank" href="{{weblinks1}}" style="text-decoration: none; color: white">
+                                <h3 style="padding-left: 3%">{{names1}} — {{popularity1}}%</h3>
+                            </a>
+                        </div>
+                    {% elif names2 is not none and names3 is none%}
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-4" style="text-align: center">
+                            <a target="_blank" href="{{weblinks1}}" style="text-decoration: none; color: white">
+                                <h3 style="padding-left: 3%">{{names1}} — {{popularity1}}%</h3>
+                            </a>
+                        </div>
+                    {% else %} 
+                        <div class="col-sm-4" style="text-align: center">
+                            <a target="_blank" href="{{weblinks1}}" style="text-decoration: none; color: white">
+                                <h3 style="padding-left: 3%">{{names1}} — {{popularity1}}%</h3>
+                            </a>
+                        </div>
+                    {% endif %}
+                    
+                {% endif %}
+                {% if names2 is not none %}
+                    {%if names3 is not none %}
+                        <div class="col-sm-4" style="text-align: center">
+                            <a target="_blank" href="{{weblinks2}}" style="text-decoration: none; color: white">
+                                <h3 style="padding-left: 3%">{{names2}} — {{popularity2}}%</h3>
+                            </a>
+                        </div>
+                    {% else %}
+                        <div class="col-sm-4" style="text-align: center">
+                            <a target="_blank" href="{{weblinks2}}" style="text-decoration: none; color: white">
+                                <h3 style="padding-left: 3%">{{names2}} — {{popularity2}}%</h3>
+                            </a>
+                        </div>
+                        <div class="col-sm-2"></div>
+                    {% endif %}
+                {% endif %}
+                {% if names3 is not none %}
+                    <div class="col-sm-4" style="text-align: center">
+                        <a target="_blank" href="{{weblinks3}}" style="text-decoration: none; color: white">
+                            <h3 style="padding-left: 3%">{{names3}} — {{popularity3}}%</h3>
+                        </a>
+                    </div>
+                {% endif %}
+
+            </div>
+            <br> 
+        </div>
+    {% endfor %}
+{% else %}
+    <div class="container-fluid" style="padding-left: 2%">
+        {% for name, images, weblink, applink, popularity in infos %}
+            <div class="row">
+                <div class="col-sm-3">
+                </div>
+                <div class="col-sm-6" style="text-align: center">
+                    <a href="{{applink}}">
+                        {% if images is not none %}
+                            <img class="artist_image" src="{{images}}" alt="" height=250em>
+                        {% else %}
+                            <img class="artist_image" src="{% static 'img/default_artist.jpg' %}" alt="" height=250em>
+                        {% endif %}
+                    </a>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-sm-3">
+                </div>
+                <div class="col-sm-6" style="text-align: center">
+                    <a target="_blank" href="{{weblink}}" style="text-decoration: none; color: white">
+                        <h3 style="padding-left: 3%">{{name}} — {{popularity}}%</h3>
+                    </a>
+                </div>
+            </div>
+            <br>
+        {% endfor %}
+    </div>
+{% endif %}
+<br>
+{% endblock %}

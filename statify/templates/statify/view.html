@@ -1,0 +1,64 @@
+{% extends 'base_layout.html' %}
+{% load static %}
+
+{% block content %}
+
+    {% if res is not none %}
+        <script>
+            document.getElementById("swap").innerHTML = "<button class='btn btn-dark'><a style='color: white; text-decoration: none;' href='/logout'>Logout</a></button>"
+        </script>
+
+        <style>
+            .linkbtn{
+                color: white !important
+            }
+            .linkbtn:hover{
+                color: white;
+                text-decoration: none;
+            }
+        </style>
+
+        <div class="container-fluid">
+            <br>
+            <div class="row">
+                <div class="col-md-12" style="padding-top: 1em; padding-bottom: 1em; text-align: center;">
+                    <button  style="width: 15em" class="btn btn-dark"><a href="recent_artists/" class="linkbtn">Recent Artists</a></button>
+                </div>
+                <div class="col-md-12" style="padding-top: 1em; padding-bottom: 1em; text-align: center;">
+                    <button  style="width: 15em" class="btn btn-dark"><a href="recent_tracks/" class="linkbtn">Recent Tracks</a></button>
+                </div>
+                <div class="col-md-12" style="padding-top: 1em; padding-bottom: 1em; text-align: center;">
+                    <button  style="width: 15em" class="btn btn-dark"><a href="recent_genres/" class="linkbtn">Recent Genres</a></button>
+                </div>
+                <div class="col-md-12" style="padding-top: 1em; padding-bottom: 1em; text-align: center;">
+                    <button class="btn btn-dark" style="width: 15em"><a href="top_tracks/" class="linkbtn">Top Tracks</a></button>
+                </div>
+                <div class="col-md-12" style="padding-top: 1em; padding-bottom: 1em; text-align: center;">
+                    <button  style="width: 15em" class="btn btn-dark"><a href="top_artists/" class="linkbtn">Top Artists</a></button>
+                </div>
+                <div class="col-md-12" style="padding-top: 1em; padding-bottom: 1em; text-align: center;">
+                    <button  style="width: 15em" class="btn btn-dark"><a href="top_genres/" class="linkbtn">Top Genres</a></button>
+                </div>
+            </div>
+
+        </div>
+        
+    
+    {% else %}
+    <script>
+        document.getElementById("swap").innerHTML = "<button class='btn btn-dark'><a style='color: white' href='/login'>Login</a></button>"
+    </script>
+    <br>
+    <br>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6" style="text-align: center;">
+                <h1>Welcome to Statify! Sign in to view your Spotify usage stats, listening trends, and activiy data!</h1>
+            </div>
+
+        </div>    
+    </div>
+    {% endif %}
+
+{% endblock %}

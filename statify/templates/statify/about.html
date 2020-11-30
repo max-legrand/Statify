@@ -1,0 +1,43 @@
+{% extends 'base_layout.html' %}
+{% load static %}
+
+{% block content %}
+
+    {% if res is not none %}
+        <script>
+            document.getElementById("swap").innerHTML = "<button class='btn btn-dark'><a style='color: white; text-decoration: none;' href='/logout'>Logout</a></button>"
+        </script>
+
+        <style>
+            .linkbtn{
+                color: white !important
+            }
+            .linkbtn:hover{
+                color: white;
+                text-decoration: none;
+            }
+        </style>
+
+    {% else %}
+    <script>
+        document.getElementById("swap").innerHTML = "<button class='btn btn-dark'><a style='color: white' href='/login'>Login</a></button>"
+    </script>
+
+    {% endif %}
+
+
+    <br>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8" style="text-align: center;">
+                <h1>Statify is an open-source project. The project code can be found on my github <a target="_blank" href="https://github.com/max-legrand/Statify">here</a>.
+                <br>
+                <br>
+                Feel free to leave comments or feedback on the git repo!</h1>
+            </div>
+
+        </div>    
+    </div>
+
+{% endblock %}

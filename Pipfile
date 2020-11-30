@@ -1,0 +1,22 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+flake8 = "*"
+
+[packages]
+spotipy = "*"
+django = "*"
+whitenoise = "*"
+psycopg2-binary = "*"
+pyyaml = "*"
+ua-parser = "*"
+user-agents = "*"
+django-user-agents = "*"
+gunicorn = "*"
+django-heroku = "*"
+
+[requires]
+python_version = "3.9"
