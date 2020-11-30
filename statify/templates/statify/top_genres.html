@@ -106,7 +106,7 @@
 <br>
 
 
-{% if ismobile %}
+{% if mobile %}
     <div class="chart-container" style="position: relative;">
         <canvas id="myChart" height="350%"></canvas>
     </div> 
@@ -122,6 +122,7 @@
         <br>
     </div>
 {% endif %}
+<br>
 
 <script>
 let dataval = {{datas|safe}}
